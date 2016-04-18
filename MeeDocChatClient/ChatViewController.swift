@@ -165,8 +165,15 @@ class ChatViewController : UIViewController, SRWebSocketDelegate, UITableViewDel
 //        
 //    }
 
-    override func viewWillDisappear(animated: Bool) {
+    override func willMoveToParentViewController(parent: UIViewController?) {
         
+        if (parent == nil) {
+            AlertUtil.showErrorAlert(self, msg: "Disconneted From Server");
+        }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+
         if (socket != nil) {
             socket.close()
             socket.delegate = nil
