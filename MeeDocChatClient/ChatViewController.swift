@@ -113,9 +113,6 @@ class ChatViewController : UIViewController, SRWebSocketDelegate, UITableViewDel
     
     private func restartChat() {
 
-        //TODO:: Alert user that the connection is down and we are restarting it
-            //restating ...
-        
         socket.delegate = nil
         socket = nil
         
@@ -129,8 +126,12 @@ class ChatViewController : UIViewController, SRWebSocketDelegate, UITableViewDel
         
         //TODO:: check if the socket is down
         
-        //TODO:: don't send if the textField is empty
-        
+        if (self.writeMessageTextView.text == Constants.typeMessagePlaceHolder ||
+            self.writeMessageTextView.text.isEmpty) {
+            
+            AlertUtil.showErrorAlert(self, msg: "Please type a message first")
+            return
+        }
         //
         let msg = self.writeMessageTextView.text
         self.writeMessageTextView.text = ""
