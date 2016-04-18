@@ -44,8 +44,8 @@ class ChatViewController : UIViewController, SRWebSocketDelegate {
         //TODO:: Alert user that the connection is down and we are restarting it
             //restating ...
         
-        socket.delegate = nil;
-        socket = nil;
+        socket.delegate = nil
+        socket = nil
         
         startChat()
         
@@ -87,7 +87,7 @@ class ChatViewController : UIViewController, SRWebSocketDelegate {
     func webSocketDidOpen(webSocket: SRWebSocket!) {
         print("SRWebSocket: webSocketDidOpen")
         
-        self.sendMessageButton.enabled = true;
+        self.sendMessageButton.enabled = true
     }
 
     //Message will either be an NSString if the server is using text or NSData if the server is using binary

@@ -9,23 +9,25 @@
 import UIKit
 
 class WelcomeViewController: UIViewController {
-
+    
     @IBOutlet weak var userNameTextField: UITextField!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
         
+        if identifier ==  Constants.openChatSegue {
+            guard let text = userNameTextField.text where !text.isEmpty else {
+                return false
+            }
+        }
+        return true
     }
-    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
         if segue.identifier ==  Constants.openChatSegue {
             let viewController = segue.destinationViewController as! ChatViewController
-            
-            //TODO::show alert if username is empty
             viewController.userName = self.userNameTextField.text
         }
-    }
-
+    }    
 }
 
