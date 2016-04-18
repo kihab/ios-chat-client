@@ -139,7 +139,7 @@ class ChatViewController : UIViewController, SRWebSocketDelegate, UITableViewDel
         self.chatMessages.append(chatMessage)
         self.chatTableView.reloadData()
         
-        //
+        //ses UTF8 encoded string or data
         socket.send(msg)
         
         //
@@ -327,6 +327,7 @@ class ChatViewController : UIViewController, SRWebSocketDelegate, UITableViewDel
             self.chatMessages.append(chatMessage)
             self.chatTableView.reloadData()
             self.scrollToBottom()
+            self.receivedMessageAudio.play()
             
         }else{
             
@@ -353,7 +354,10 @@ class ChatViewController : UIViewController, SRWebSocketDelegate, UITableViewDel
         print("SRWebSocket: didCloseWasClear:\(wasClean)")
 
 //        show a message to recconect to server Manually
-//        restartChat()
+        AlertUtil.showOkCancelAlert(self, title: "Oops!", message: "Server Disconnected :( ", okTitle: "Reconnect", okHandler: { (action) in
+            self.restartChat()
+            }, cancelHandler: nil)
+        
 
     }
     

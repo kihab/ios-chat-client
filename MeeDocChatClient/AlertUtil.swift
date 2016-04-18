@@ -21,11 +21,11 @@ class AlertUtil {
     }
     
     
-    class func showOkCancelAlert(view:UIViewController, title: String, message: String, okHandler: ((UIAlertAction) -> Void)?, cancelHandler: ((UIAlertAction) -> Void)? ){
+    class func showOkCancelAlert(view:UIViewController, title: String, message: String, okTitle: String, okHandler: ((UIAlertAction) -> Void)?, cancelHandler: ((UIAlertAction) -> Void)? ){
         
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         
-        let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
+        let OKAction = UIAlertAction(title: okTitle, style: .Default) { (action) in
             if let okHandler = okHandler {
                 okHandler(action)
             }
