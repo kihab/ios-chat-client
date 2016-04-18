@@ -20,4 +20,5 @@ Xcode Version :
 SDK :
 Depolyment Target :
 Min :
+Swift Version: 
 

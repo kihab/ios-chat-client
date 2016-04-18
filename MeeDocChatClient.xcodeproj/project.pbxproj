@@ -17,6 +17,7 @@
 		8A35E6F91CC4D60D008DADE6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A35E6F81CC4D60D008DADE6 /* Constants.swift */; };
 		8A35E6FB1CC4D685008DADE6 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A35E6FA1CC4D685008DADE6 /* ChatMessage.swift */; };
 		8A35E6FD1CC4D7EE008DADE6 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A35E6FC1CC4D7EE008DADE6 /* ChatViewController.swift */; };
+		8A35E7001CC4FBBF008DADE6 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A35E6FF1CC4FBBF008DADE6 /* StringExtensions.swift */; };
 		D7FC2312C1EF9C2FE96DF5BB /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A330E409A00EF3F8128395 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		8A35E6F81CC4D60D008DADE6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8A35E6FA1CC4D685008DADE6 /* ChatMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		8A35E6FC1CC4D7EE008DADE6 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		8A35E6FF1CC4FBBF008DADE6 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		AEDBB439666133DDCDC3FCCE /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -100,6 +102,7 @@
 		8A35E6BB1CC2F71A008DADE6 /* MeeDocChatClient */ = {
 			isa = PBXGroup;
 			children = (
+				8A35E6FE1CC4FBAD008DADE6 /* Extensions */,
 				8A35E6F51CC4D5C3008DADE6 /* Models */,
 				8A35E6F41CC4D5B1008DADE6 /* Controllers */,
 				8A35E6F31CC4D5A6008DADE6 /* Services */,
@@ -153,6 +156,14 @@
 				8A35E6FA1CC4D685008DADE6 /* ChatMessage.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		8A35E6FE1CC4FBAD008DADE6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8A35E6FF1CC4FBBF008DADE6 /* StringExtensions.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		F0AC2793E7C6F416BE1B17F6 /* Pods */ = {
@@ -319,6 +330,7 @@
 				8A35E6BF1CC2F71A008DADE6 /* WelcomeViewController.swift in Sources */,
 				8A35E6BD1CC2F71A008DADE6 /* AppDelegate.swift in Sources */,
 				8A35E6F71CC4D5F5008DADE6 /* SocketService.swift in Sources */,
+				8A35E7001CC4FBBF008DADE6 /* StringExtensions.swift in Sources */,
 				8A35E6FB1CC4D685008DADE6 /* ChatMessage.swift in Sources */,
 				8A35E6FD1CC4D7EE008DADE6 /* ChatViewController.swift in Sources */,
 				8A35E6F91CC4D60D008DADE6 /* Constants.swift in Sources */,

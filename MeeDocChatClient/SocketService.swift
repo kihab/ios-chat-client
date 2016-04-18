@@ -7,3 +7,15 @@
 //
 
 import Foundation
+import SocketRocket
+
+class SocketService {
+
+    static func getChatSocket(username:String) -> SRWebSocket{
+        
+        let urlRequest = NSURLRequest(URL: NSURL(string: "\(Constants.webSocketURL)?\(Constants.userNameParam)=\(username)")!)
+        let socket = SRWebSocket(URLRequest: urlRequest)
+        
+        return socket
+    }
+}

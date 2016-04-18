@@ -16,4 +16,6 @@ class Constants {
     
     static let message = "message"
     static let sender = "sender"
+    
+    static let openChatSegue = "openChatScreen"
 }

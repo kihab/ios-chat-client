@@ -7,45 +7,25 @@
 //
 
 import UIKit
-import SocketRocket
 
-class WelcomeViewController: UIViewController, SRWebSocketDelegate {
+class WelcomeViewController: UIViewController {
 
-    var socket:SRWebSocket!
-    
-    func webSocketDidOpen(webSocket: SRWebSocket!) {
-        print("SRWebSocket: webSocketDidOpen")
-        socket.send("Hello There!!!");
-    }
-    
-    func webSocket(webSocket: SRWebSocket!, didFailWithError error: NSError!) {
-        
-        print("SRWebSocket: didFailWithError:\(error)")
-    }
-    
-    func webSocket(webSocket: SRWebSocket!, didReceiveMessage message: AnyObject!) {
-        
-        print("SRWebSocket: didReceiveMessage")
-        print(message)
-    }
-    
-    func webSocket(webSocket: SRWebSocket!, didCloseWithCode code: Int, reason: String!, wasClean: Bool) {
-        
-        print("SRWebSocket: didCloseWithCode: \(code)")
-        print("SRWebSocket: didCloseWithReason:\(reason)")
-        print("SRWebSocket: didCloseWasClear:\(wasClean)")
-    }
-
+    @IBOutlet weak var userNameTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
-        socket = SRWebSocket(URLRequest: NSURLRequest(URL: NSURL(string: "\(Constants.webSocketURL)?\(Constants.userNameParam)=karim")!))
-        socket.delegate = self
-        socket.open()
         
     }
-
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier ==  Constants.openChatSegue {
+            let viewController = segue.destinationViewController as! ChatViewController
+            
+            //TODO::show alert if username is empty
+            viewController.userName = self.userNameTextField.text
+        }
+    }
 
 }
 

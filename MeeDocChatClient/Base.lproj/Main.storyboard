@@ -33,7 +33,7 @@
                                 <rect key="frame" x="150" y="299" width="34" height="30"/>
                                 <state key="normal" title="Start"/>
                                 <connections>
-                                    <segue destination="QpJ-lv-J1r" kind="show" id="GW2-7o-klG"/>
+                                    <segue destination="QpJ-lv-J1r" kind="show" identifier="openChatScreen" id="GW2-7o-klG"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Pq-B3-8Yy">
@@ -47,6 +47,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="Welcome" id="akK-KQ-6fc"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="userNameTextField" destination="aQ7-im-bl7" id="dEv-lU-2Rz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

@@ -12,16 +12,17 @@ struct ChatMessage {
     
     var message:String!
     var sender:String!
-    
-    init(fromDictionary dictionary: NSDictionary){
-        message = dictionary[Constants.message] as? String
-        sender = dictionary[Constants.sender] as? String
-    }
-    
+
     init(message:String, sender:String){
         self.message = message
         self.sender = sender
     }
+
+    init(dictionary: NSDictionary){
+        message = dictionary[Constants.message] as? String
+        sender = dictionary[Constants.sender] as? String
+    }
+    
     
     
 }
