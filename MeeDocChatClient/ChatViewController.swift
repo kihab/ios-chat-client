@@ -122,50 +122,34 @@ class ChatViewController : UIViewController, SRWebSocketDelegate, UITableViewDel
     
     @IBAction func sendMessage(sender: AnyObject) {
         
-        //TODO::check if the socket is not opened yet
-        
-        //TODO:: check if the socket is down
-        
+        //If the user didn't type a message show an alert and dont send empty message
         if (self.writeMessageTextView.text == Constants.typeMessagePlaceHolder ||
             self.writeMessageTextView.text.isEmpty) {
             
             AlertUtil.showErrorAlert(self, msg: "Please type a message first")
             return
         }
-        //
+        
+        //Build message
         let msg = self.writeMessageTextView.text
         self.writeMessageTextView.text = ""
-        //
         let chatMessage = ChatMessage(message: msg, sender: userName, type: MessageType.sentMessage, date: NSDate())
+        
+        //Append to Table DataSource and Reload
         self.chatMessages.append(chatMessage)
         self.chatTableView.reloadData()
         
-        //ses UTF8 encoded string or data
+        //send UTF8 encoded string or data to server
         socket.send(msg)
         
-        //
+        //Play sent message Sound
         self.sentMessageAudio.play()
-        
+
+        //Scroll to bottom so that the user always see the latest messages
         self.scrollToBottom()
-
-        //
-//        self.toggleSendingMessageIndicator(false)
-
     }
-    
- 
-//    func toggleSendingMessageIndicator(showIndicator: Bool) {
-//        
-//        sendMessageButton.hidden = showIndicator
-//        sendMessageSpinner.hidden = !showIndicator
-//        if showIndicator {
-//            sendMessageSpinner.startAnimating()
-//        }else {
-//            sendMessageSpinner.stopAnimating()
-//        }
-//        
-//    }
 
+    //
     override func willMoveToParentViewController(parent: UIViewController?) {
         
         if (parent == nil) {
