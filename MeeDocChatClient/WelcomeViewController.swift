@@ -9,45 +9,41 @@
 import UIKit
 import SocketRocket
 
-class ViewController: UIViewController, SRWebSocketDelegate {
+class WelcomeViewController: UIViewController, SRWebSocketDelegate {
 
     var socket:SRWebSocket!
     
     func webSocketDidOpen(webSocket: SRWebSocket!) {
-        print("webSocketDidOpen")
+        print("SRWebSocket: webSocketDidOpen")
         socket.send("Hello There!!!");
-        //        socket.close()
     }
     
     func webSocket(webSocket: SRWebSocket!, didFailWithError error: NSError!) {
-        print("didFailWithError:\(error)")
+        
+        print("SRWebSocket: didFailWithError:\(error)")
     }
     
     func webSocket(webSocket: SRWebSocket!, didReceiveMessage message: AnyObject!) {
-        print("didReceiveMessage")
+        
+        print("SRWebSocket: didReceiveMessage")
         print(message)
     }
     
     func webSocket(webSocket: SRWebSocket!, didCloseWithCode code: Int, reason: String!, wasClean: Bool) {
-        print("didCloseWithCode")
-        print("Code:\(code)")
-        print("Reason:\(reason)")
-        print("wasClear:\(wasClean)")
+        
+        print("SRWebSocket: didCloseWithCode: \(code)")
+        print("SRWebSocket: didCloseWithReason:\(reason)")
+        print("SRWebSocket: didCloseWasClear:\(wasClean)")
     }
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        socket = SRWebSocket(URLRequest: NSURLRequest(URL: NSURL(string: "https://codingtest.meedoc.com/ws?username=karim")!))
+                
+        socket = SRWebSocket(URLRequest: NSURLRequest(URL: NSURL(string: "\(Constants.webSocketURL)?\(Constants.userNameParam)=karim")!))
         socket.delegate = self
         socket.open()
         
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 
