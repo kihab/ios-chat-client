@@ -25,5 +25,5 @@ class Constants {
     
     static let initialMessageCellHeight:CGFloat = 44
     static let messageSidesSpacing:CGFloat = 66
-    static let messageSenderNameHeight:CGFloat = 28
+    static let messageSenderNameHeight:CGFloat = 35
 }

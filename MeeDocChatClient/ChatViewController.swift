@@ -114,6 +114,8 @@ class ChatViewController : UIViewController, SRWebSocketDelegate, UITableViewDel
         //
         self.sentMessageAudio.play()
         
+        self.scrollToBottom()
+
         //
 //        self.toggleSendingMessageIndicator(false)
 
@@ -140,6 +142,29 @@ class ChatViewController : UIViewController, SRWebSocketDelegate, UITableViewDel
             socket = nil
         }
 
+    }
+    
+    func scrollToBottom() {
+        // Handle Scrolling
+        self.delay(0.001) { () -> Void in
+            let numberOfSections = self.chatTableView.numberOfSections
+            if numberOfSections > 0 {
+                let numberOfRows = self.chatTableView.numberOfRowsInSection(numberOfSections-1)
+                if numberOfRows > 0 {
+                    let indexPath = NSIndexPath(forRow: numberOfRows-1, inSection: (numberOfSections-1))
+                    self.chatTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Middle, animated: false)
+                }
+            }
+        }
+    }
+    
+    func delay(delay:Double, closure:()->()) {
+        dispatch_after(
+            dispatch_time(
+                DISPATCH_TIME_NOW,
+                Int64(delay * Double(NSEC_PER_SEC))
+            ),
+            dispatch_get_main_queue(), closure)
     }
     
     //========================= TextView Delegates =========================
@@ -263,6 +288,7 @@ class ChatViewController : UIViewController, SRWebSocketDelegate, UITableViewDel
             chatMessage = ChatMessage(dictionary: messageDict!, type: MessageType.recievedMessage, date: NSDate())
             self.chatMessages.append(chatMessage)
             self.chatTableView.reloadData()
+            self.scrollToBottom()
             
         }else{
             

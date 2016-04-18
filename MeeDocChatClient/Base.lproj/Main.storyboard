@@ -168,7 +168,7 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XYZ-Zp-wDj" userLabel="Chat Table View">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XYZ-Zp-wDj" userLabel="Chat Table View">
                                 <rect key="frame" x="-4" y="64" width="328" height="366"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -180,7 +180,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="9f2-mD-6Cb" userLabel="ReceivedView">
-                                                    <rect key="frame" x="8" y="76" width="147" height="34"/>
+                                                    <rect key="frame" x="13" y="76" width="147" height="34"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Received Message" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HML-j7-GZR" userLabel="Received Message">
                                                             <rect key="frame" x="8" y="8" width="131" height="20"/>
@@ -203,13 +203,13 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="1000" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bmo-bU-eyl">
-                                                    <rect key="frame" x="132" y="112" width="23" height="12"/>
+                                                    <rect key="frame" x="137" y="112" width="23" height="12"/>
                                                     <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="10"/>
                                                     <color key="textColor" red="0.61960784310000006" green="0.61960784310000006" blue="0.61960784310000006" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" text="Sender Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kwD-RR-cYi">
-                                                    <rect key="frame" x="8" y="49" width="312" height="20"/>
+                                                    <rect key="frame" x="13" y="49" width="307" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="pJf-OM-T9N"/>
                                                     </constraints>
@@ -222,11 +222,11 @@
                                                 <constraint firstAttribute="bottom" secondItem="9f2-mD-6Cb" secondAttribute="bottom" constant="22" id="7KK-iC-sop"/>
                                                 <constraint firstItem="9f2-mD-6Cb" firstAttribute="trailing" secondItem="bmo-bU-eyl" secondAttribute="trailing" id="9N5-Gr-hxA"/>
                                                 <constraint firstItem="bmo-bU-eyl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="PIx-Ma-Gkz" secondAttribute="leadingMargin" constant="8" id="IR7-gF-JGb"/>
-                                                <constraint firstItem="kwD-RR-cYi" firstAttribute="leading" secondItem="PIx-Ma-Gkz" secondAttribute="leadingMargin" id="QfQ-Hj-y3t"/>
+                                                <constraint firstItem="kwD-RR-cYi" firstAttribute="leading" secondItem="PIx-Ma-Gkz" secondAttribute="leadingMargin" constant="5" id="QfQ-Hj-y3t"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="kwD-RR-cYi" secondAttribute="trailing" id="SP8-96-CFS"/>
                                                 <constraint firstItem="9f2-mD-6Cb" firstAttribute="top" secondItem="kwD-RR-cYi" secondAttribute="bottom" constant="7" id="SxO-lZ-OVr"/>
                                                 <constraint firstItem="bmo-bU-eyl" firstAttribute="top" secondItem="9f2-mD-6Cb" secondAttribute="bottom" constant="2" id="X46-mf-7gQ"/>
-                                                <constraint firstItem="9f2-mD-6Cb" firstAttribute="leading" secondItem="PIx-Ma-Gkz" secondAttribute="leadingMargin" id="bjJ-zf-1eq"/>
+                                                <constraint firstItem="9f2-mD-6Cb" firstAttribute="leading" secondItem="PIx-Ma-Gkz" secondAttribute="leadingMargin" constant="5" id="bjJ-zf-1eq"/>
                                                 <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="9f2-mD-6Cb" secondAttribute="trailing" constant="50" id="bug-Dh-vHE"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="bmo-bU-eyl" secondAttribute="bottom" id="ntJ-Bt-dvR"/>
                                                 <constraint firstItem="9f2-mD-6Cb" firstAttribute="bottom" secondItem="PIx-Ma-Gkz" secondAttribute="bottomMargin" id="yeC-hD-eRo"/>
