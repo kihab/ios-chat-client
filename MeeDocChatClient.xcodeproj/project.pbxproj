@@ -18,6 +18,12 @@
 		8A35E6FB1CC4D685008DADE6 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A35E6FA1CC4D685008DADE6 /* ChatMessage.swift */; };
 		8A35E6FD1CC4D7EE008DADE6 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A35E6FC1CC4D7EE008DADE6 /* ChatViewController.swift */; };
 		8A35E7001CC4FBBF008DADE6 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A35E6FF1CC4FBBF008DADE6 /* StringExtensions.swift */; };
+		8A35E7021CC518B6008DADE6 /* AlertUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A35E7011CC518B6008DADE6 /* AlertUtil.swift */; };
+		8A35E7041CC51ED5008DADE6 /* SentMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A35E7031CC51ED5008DADE6 /* SentMessageTableViewCell.swift */; };
+		8A35E70A1CC53161008DADE6 /* receivedMessageAudio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8A35E7081CC53161008DADE6 /* receivedMessageAudio.mp3 */; };
+		8A35E70B1CC53161008DADE6 /* sentMessageAudio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8A35E7091CC53161008DADE6 /* sentMessageAudio.mp3 */; };
+		8A35E70F1CC544DA008DADE6 /* ReceivedMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A35E70E1CC544DA008DADE6 /* ReceivedMessageTableViewCell.swift */; };
+		8A35E7111CC54D95008DADE6 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A35E7101CC54D95008DADE6 /* DateUtil.swift */; };
 		D7FC2312C1EF9C2FE96DF5BB /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A330E409A00EF3F8128395 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +55,12 @@
 		8A35E6FA1CC4D685008DADE6 /* ChatMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		8A35E6FC1CC4D7EE008DADE6 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		8A35E6FF1CC4FBBF008DADE6 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		8A35E7011CC518B6008DADE6 /* AlertUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertUtil.swift; sourceTree = "<group>"; };
+		8A35E7031CC51ED5008DADE6 /* SentMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentMessageTableViewCell.swift; sourceTree = "<group>"; };
+		8A35E7081CC53161008DADE6 /* receivedMessageAudio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = receivedMessageAudio.mp3; sourceTree = "<group>"; };
+		8A35E7091CC53161008DADE6 /* sentMessageAudio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sentMessageAudio.mp3; sourceTree = "<group>"; };
+		8A35E70E1CC544DA008DADE6 /* ReceivedMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceivedMessageTableViewCell.swift; sourceTree = "<group>"; };
+		8A35E7101CC54D95008DADE6 /* DateUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 		AEDBB439666133DDCDC3FCCE /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,6 +114,7 @@
 		8A35E6BB1CC2F71A008DADE6 /* MeeDocChatClient */ = {
 			isa = PBXGroup;
 			children = (
+				8A35E7071CC53156008DADE6 /* Audio */,
 				8A35E6FE1CC4FBAD008DADE6 /* Extensions */,
 				8A35E6F51CC4D5C3008DADE6 /* Models */,
 				8A35E6F41CC4D5B1008DADE6 /* Controllers */,
@@ -129,6 +142,8 @@
 			isa = PBXGroup;
 			children = (
 				8A35E6F81CC4D60D008DADE6 /* Constants.swift */,
+				8A35E7011CC518B6008DADE6 /* AlertUtil.swift */,
+				8A35E7101CC54D95008DADE6 /* DateUtil.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -154,6 +169,8 @@
 			isa = PBXGroup;
 			children = (
 				8A35E6FA1CC4D685008DADE6 /* ChatMessage.swift */,
+				8A35E7031CC51ED5008DADE6 /* SentMessageTableViewCell.swift */,
+				8A35E70E1CC544DA008DADE6 /* ReceivedMessageTableViewCell.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -164,6 +181,15 @@
 				8A35E6FF1CC4FBBF008DADE6 /* StringExtensions.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		8A35E7071CC53156008DADE6 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				8A35E7081CC53161008DADE6 /* receivedMessageAudio.mp3 */,
+				8A35E7091CC53161008DADE6 /* sentMessageAudio.mp3 */,
+			);
+			name = Audio;
 			sourceTree = "<group>";
 		};
 		F0AC2793E7C6F416BE1B17F6 /* Pods */ = {
@@ -259,7 +285,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A35E70A1CC53161008DADE6 /* receivedMessageAudio.mp3 in Resources */,
 				8A35E6C71CC2F71A008DADE6 /* LaunchScreen.storyboard in Resources */,
+				8A35E70B1CC53161008DADE6 /* sentMessageAudio.mp3 in Resources */,
 				8A35E6C41CC2F71A008DADE6 /* Assets.xcassets in Resources */,
 				8A35E6C21CC2F71A008DADE6 /* Main.storyboard in Resources */,
 			);
@@ -327,7 +355,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A35E7021CC518B6008DADE6 /* AlertUtil.swift in Sources */,
+				8A35E7111CC54D95008DADE6 /* DateUtil.swift in Sources */,
 				8A35E6BF1CC2F71A008DADE6 /* WelcomeViewController.swift in Sources */,
+				8A35E70F1CC544DA008DADE6 /* ReceivedMessageTableViewCell.swift in Sources */,
+				8A35E7041CC51ED5008DADE6 /* SentMessageTableViewCell.swift in Sources */,
 				8A35E6BD1CC2F71A008DADE6 /* AppDelegate.swift in Sources */,
 				8A35E6F71CC4D5F5008DADE6 /* SocketService.swift in Sources */,
 				8A35E7001CC4FBBF008DADE6 /* StringExtensions.swift in Sources */,

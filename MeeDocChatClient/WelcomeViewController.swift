@@ -16,6 +16,7 @@ class WelcomeViewController: UIViewController {
         
         if identifier ==  Constants.openChatSegue {
             guard let text = userNameTextField.text where !text.isEmpty else {
+                AlertUtil.showErrorAlert(self, msg: "Please enter you name.")
                 return false
             }
         }
@@ -28,6 +29,6 @@ class WelcomeViewController: UIViewController {
             let viewController = segue.destinationViewController as! ChatViewController
             viewController.userName = self.userNameTextField.text
         }
-    }    
+    }
 }
 

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class Constants {
     
@@ -18,4 +19,11 @@ class Constants {
     static let sender = "sender"
     
     static let openChatSegue = "openChatScreen"
+    
+    static let typeMessagePlaceHolder = "Type a message ..."
+    
+    
+    static let initialMessageCellHeight:CGFloat = 44
+    static let messageSidesSpacing:CGFloat = 66
+    static let messageSenderNameHeight:CGFloat = 28
 }
