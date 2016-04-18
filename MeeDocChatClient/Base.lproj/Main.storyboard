@@ -18,32 +18,90 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aQ7-im-bl7">
-                                <rect key="frame" x="77" y="225" width="184" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aQ7-im-bl7">
+                                <rect key="frame" x="96" y="264" width="158" height="19"/>
+                                <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUZ-Uy-Dll">
-                                <rect key="frame" x="148" y="151" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="UNI-DJ-gce">
+                                <rect key="frame" x="110" y="114" width="100" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="8kZ-4l-dgC"/>
+                                    <constraint firstAttribute="width" constant="100" id="Jox-sM-UGt"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter you name to start using MeeDoc Chat Service" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMd-fj-ghM">
+                                <rect key="frame" x="32" y="185" width="257" height="71"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="71" id="WpL-4v-5Db"/>
+                                    <constraint firstAttribute="width" constant="257" id="nBP-ay-2iY"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="71" id="vf6-7f-oWx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="15"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aRV-4W-ah3">
-                                <rect key="frame" x="150" y="299" width="34" height="30"/>
-                                <state key="normal" title="Start"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="name" translatesAutoresizingMaskIntoConstraints="NO" id="IMt-uu-t6S">
+                                <rect key="frame" x="66" y="263" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="Ae7-kH-DKd"/>
+                                    <constraint firstAttribute="width" constant="20" id="URM-Hh-fPY"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pLL-kL-Lg7">
+                                <rect key="frame" x="66" y="293" width="188" height="1"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="ksT-VY-FSt"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aRV-4W-ah3">
+                                <rect key="frame" x="96" y="321" width="128" height="31"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.64641702590000005" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="14"/>
+                                <state key="normal" title="Let's do it">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <segue destination="QpJ-lv-J1r" kind="show" identifier="openChatScreen" id="GW2-7o-klG"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Pq-B3-8Yy">
-                                <rect key="frame" x="148" y="188" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="IMt-uu-t6S" firstAttribute="baseline" secondItem="aQ7-im-bl7" secondAttribute="baseline" id="5tB-qt-ldU"/>
+                            <constraint firstItem="aRV-4W-ah3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="80" id="B5g-3b-KUM"/>
+                            <constraint firstItem="fMd-fj-ghM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="EAK-ct-xiS"/>
+                            <constraint firstItem="aQ7-im-bl7" firstAttribute="leading" secondItem="IMt-uu-t6S" secondAttribute="trailing" constant="10" id="EPc-ci-BU5"/>
+                            <constraint firstItem="pLL-kL-Lg7" firstAttribute="leading" secondItem="IMt-uu-t6S" secondAttribute="leading" id="Fsl-yC-keF"/>
+                            <constraint firstItem="aRV-4W-ah3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GHg-tv-HD1"/>
+                            <constraint firstItem="IMt-uu-t6S" firstAttribute="centerY" secondItem="aQ7-im-bl7" secondAttribute="centerY" id="NtF-nI-yBk"/>
+                            <constraint firstItem="aQ7-im-bl7" firstAttribute="top" secondItem="fMd-fj-ghM" secondAttribute="bottom" constant="8" id="R0m-Vd-ASj"/>
+                            <constraint firstItem="pLL-kL-Lg7" firstAttribute="trailing" secondItem="aQ7-im-bl7" secondAttribute="trailing" id="U6f-5z-Dci"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="aRV-4W-ah3" secondAttribute="trailing" constant="80" id="ZVg-Xd-p4X"/>
+                            <constraint firstItem="UNI-DJ-gce" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="aI1-Jd-Kzz"/>
+                            <constraint firstItem="fMd-fj-ghM" firstAttribute="top" secondItem="UNI-DJ-gce" secondAttribute="bottom" constant="21" id="acE-vZ-JeB"/>
+                            <constraint firstItem="pLL-kL-Lg7" firstAttribute="leading" secondItem="IMt-uu-t6S" secondAttribute="leading" id="gXW-W7-Hgz"/>
+                            <constraint firstItem="pLL-kL-Lg7" firstAttribute="top" secondItem="IMt-uu-t6S" secondAttribute="bottom" constant="10" id="gYO-tN-h6r"/>
+                            <constraint firstItem="aRV-4W-ah3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gai-us-bMt"/>
+                            <constraint firstItem="IMt-uu-t6S" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="50" id="ie5-jX-rH8"/>
+                            <constraint firstItem="aRV-4W-ah3" firstAttribute="top" secondItem="pLL-kL-Lg7" secondAttribute="bottom" constant="26.5" id="nbf-BX-IYc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="aQ7-im-bl7" secondAttribute="trailing" constant="50" id="yLY-pA-1vf"/>
+                            <constraint firstItem="UNI-DJ-gce" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yeX-7s-NfC"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="5tB-qt-ldU"/>
+                                <exclude reference="gXW-W7-Hgz"/>
+                                <exclude reference="GHg-tv-HD1"/>
+                                <exclude reference="gai-us-bMt"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Welcome" id="akK-KQ-6fc"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
@@ -132,4 +190,8 @@
             <point key="canvasLocation" x="-306" y="273"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="logo" width="364" height="106"/>
+        <image name="name" width="38" height="38"/>
+    </resources>
 </document>
