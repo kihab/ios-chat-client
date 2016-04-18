@@ -23,6 +23,31 @@
                                 <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter you name to start using MeeDoc Chat Service" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMd-fj-ghM">
+                                <rect key="frame" x="32" y="164" width="257" height="71"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="71" id="WpL-4v-5Db"/>
+                                    <constraint firstAttribute="width" constant="257" id="nBP-ay-2iY"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="71" id="vf6-7f-oWx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="15"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="name" translatesAutoresizingMaskIntoConstraints="NO" id="IMt-uu-t6S">
+                                <rect key="frame" x="66" y="242" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="Ae7-kH-DKd"/>
+                                    <constraint firstAttribute="width" constant="20" id="URM-Hh-fPY"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pLL-kL-Lg7">
+                                <rect key="frame" x="66" y="272" width="188" height="1"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="ksT-VY-FSt"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aRV-4W-ah3">
                                 <rect key="frame" x="96" y="300" width="128" height="32"/>
                                 <color key="backgroundColor" red="1" green="0.5725490196078431" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -39,31 +64,6 @@
                                     <segue destination="QpJ-lv-J1r" kind="show" identifier="openChatScreen" id="GW2-7o-klG"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="name" translatesAutoresizingMaskIntoConstraints="NO" id="IMt-uu-t6S">
-                                <rect key="frame" x="66" y="242" width="20" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="Ae7-kH-DKd"/>
-                                    <constraint firstAttribute="width" constant="20" id="URM-Hh-fPY"/>
-                                </constraints>
-                            </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pLL-kL-Lg7">
-                                <rect key="frame" x="66" y="272" width="188" height="1"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="ksT-VY-FSt"/>
-                                </constraints>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter you name to start using MeeDoc Chat Service" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMd-fj-ghM">
-                                <rect key="frame" x="32" y="164" width="257" height="71"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="71" id="WpL-4v-5Db"/>
-                                    <constraint firstAttribute="width" constant="257" id="nBP-ay-2iY"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="71" id="vf6-7f-oWx"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="15"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -97,6 +97,7 @@
                     <navigationItem key="navigationItem" title="Welcome" id="akK-KQ-6fc"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="WelcomLabelTopConstraint" destination="Bnk-tb-EKw" id="rFd-wt-eok"/>
                         <outlet property="userNameTextField" destination="aQ7-im-bl7" id="dEv-lU-2Rz"/>
                     </connections>
                 </viewController>
@@ -112,7 +113,7 @@
                         <viewControllerLayoutGuide type="top" id="sRh-iy-9HC"/>
                         <viewControllerLayoutGuide type="bottom" id="NvZ-TC-bhb"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="bln-wi-P1j">
+                    <view key="view" contentMode="scaleToFill" id="bln-wi-P1j" customClass="UIScrollView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -326,6 +327,7 @@
                         <outlet property="chatTableView" destination="XYZ-Zp-wDj" id="sAl-DN-wwy"/>
                         <outlet property="sendMessageButton" destination="eNO-wJ-70R" id="JvV-VZ-cd3"/>
                         <outlet property="sendMessageSpinner" destination="N9k-m4-Eb3" id="Ukn-xg-2uZ"/>
+                        <outlet property="typeMessageBottomConstraint" destination="LRE-gY-3mX" id="bm8-XN-132"/>
                         <outlet property="typeMessageView" destination="WF1-nC-YzD" id="fzJ-SJ-Kbj"/>
                         <outlet property="typeMessageViewHeight" destination="a4Q-fk-J18" id="8jZ-fT-vnP"/>
                         <outlet property="writeMessageTextView" destination="S16-3y-but" id="fuY-Bn-yXY"/>

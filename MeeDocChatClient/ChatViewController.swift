@@ -11,8 +11,9 @@ import UIKit
 import AVFoundation
 import SocketRocket
 
-class ChatViewController : UIViewController, SRWebSocketDelegate, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, UIScrollViewDelegate {
+class ChatViewController : UIViewController, SRWebSocketDelegate, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
 
+    @IBOutlet weak var typeMessageBottomConstraint: NSLayoutConstraint!
     //
     @IBOutlet weak var typeMessageView: UIView!
     @IBOutlet weak var sendMessageSpinner: UIActivityIndicatorView!
@@ -41,6 +42,14 @@ class ChatViewController : UIViewController, SRWebSocketDelegate, UITableViewDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ChatViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ChatViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil);
+        
+        //Looks for single or multiple taps.
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ChatViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+
         //
         chatMessages = [ChatMessage]()
         
@@ -55,12 +64,34 @@ class ChatViewController : UIViewController, SRWebSocketDelegate, UITableViewDel
 
     }
     
+    
+    //Calls this function when the tap is recognized.
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        var info = notification.userInfo!
+        let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+        
+        UIView.animateWithDuration(0.1, animations: { () -> Void in
+            self.typeMessageBottomConstraint.constant = keyboardFrame.size.height
+        })
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        UIView.animateWithDuration(0.1, animations: { () -> Void in
+            self.typeMessageBottomConstraint.constant = 0
+        })
+    }
+    
     private func setupUI() {
         sendMessageButton.enabled = false
         sendMessageSpinner.hidden = true
         writeMessageTextView.text = Constants.typeMessagePlaceHolder
         writeMessageTextView.textColor = UIColor.lightGrayColor()
-        addBorder(writeMessageTextView, borderWidth: 0.2, borderColor: UIColor.grayColor(), cornerRaduis: 4)
+        addBorder(writeMessageTextView, borderWidth: 0.2, borderColor: UIColor.grayColor(), cornerRaduis: 4)        
     }
     
     func addBorder(view: UIView, borderWidth: CGFloat, borderColor: UIColor, cornerRaduis: CGFloat) {
@@ -302,6 +333,7 @@ class ChatViewController : UIViewController, SRWebSocketDelegate, UITableViewDel
         
         self.sendMessageButton.enabled = false
 //        restartChat()
+        //        show a message to recconect to server Manually
 
     }
     
@@ -313,6 +345,7 @@ class ChatViewController : UIViewController, SRWebSocketDelegate, UITableViewDel
         print("SRWebSocket: didCloseWithReason:\(reason)")
         print("SRWebSocket: didCloseWasClear:\(wasClean)")
 
+//        show a message to recconect to server Manually
 //        restartChat()
 
     }
@@ -344,6 +377,11 @@ class ChatViewController : UIViewController, SRWebSocketDelegate, UITableViewDel
             audio.prepareToPlay()
         } catch _ {
         }
+    }
+    
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self);
     }
     
 }

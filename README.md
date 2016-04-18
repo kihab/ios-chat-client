@@ -8,7 +8,7 @@ Link: https://github.com/square/SocketRocket
 1. Please use Xcode to open this app and open the project from the "MeeDocChatClient.xcworkspace".
 not the regular "MeeDocChatClient.xcodeproj"
 
-2.
+2.https://github.com/hackiftekhar/IQKeyboardManager
 
 
 The app is built using Swift :
