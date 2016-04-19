@@ -24,6 +24,9 @@
 		8A35E70B1CC53161008DADE6 /* sentMessageAudio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8A35E7091CC53161008DADE6 /* sentMessageAudio.mp3 */; };
 		8A35E70F1CC544DA008DADE6 /* ReceivedMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A35E70E1CC544DA008DADE6 /* ReceivedMessageTableViewCell.swift */; };
 		8A35E7111CC54D95008DADE6 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A35E7101CC54D95008DADE6 /* DateUtil.swift */; };
+		8A35E7131CC5A846008DADE6 /* AudioUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A35E7121CC5A846008DADE6 /* AudioUtil.swift */; };
+		8A35E7151CC5AC3D008DADE6 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A35E7141CC5AC3D008DADE6 /* UIViewExtensions.swift */; };
+		8A35E7171CC5ADEC008DADE6 /* GeneralUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A35E7161CC5ADEC008DADE6 /* GeneralUtil.swift */; };
 		D7FC2312C1EF9C2FE96DF5BB /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A330E409A00EF3F8128395 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +64,9 @@
 		8A35E7091CC53161008DADE6 /* sentMessageAudio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sentMessageAudio.mp3; sourceTree = "<group>"; };
 		8A35E70E1CC544DA008DADE6 /* ReceivedMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceivedMessageTableViewCell.swift; sourceTree = "<group>"; };
 		8A35E7101CC54D95008DADE6 /* DateUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
+		8A35E7121CC5A846008DADE6 /* AudioUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioUtil.swift; sourceTree = "<group>"; };
+		8A35E7141CC5AC3D008DADE6 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		8A35E7161CC5ADEC008DADE6 /* GeneralUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralUtil.swift; sourceTree = "<group>"; };
 		AEDBB439666133DDCDC3FCCE /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -144,6 +150,8 @@
 				8A35E6F81CC4D60D008DADE6 /* Constants.swift */,
 				8A35E7011CC518B6008DADE6 /* AlertUtil.swift */,
 				8A35E7101CC54D95008DADE6 /* DateUtil.swift */,
+				8A35E7121CC5A846008DADE6 /* AudioUtil.swift */,
+				8A35E7161CC5ADEC008DADE6 /* GeneralUtil.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -179,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				8A35E6FF1CC4FBBF008DADE6 /* StringExtensions.swift */,
+				8A35E7141CC5AC3D008DADE6 /* UIViewExtensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -358,9 +367,12 @@
 				8A35E7021CC518B6008DADE6 /* AlertUtil.swift in Sources */,
 				8A35E7111CC54D95008DADE6 /* DateUtil.swift in Sources */,
 				8A35E6BF1CC2F71A008DADE6 /* WelcomeViewController.swift in Sources */,
+				8A35E7151CC5AC3D008DADE6 /* UIViewExtensions.swift in Sources */,
 				8A35E70F1CC544DA008DADE6 /* ReceivedMessageTableViewCell.swift in Sources */,
 				8A35E7041CC51ED5008DADE6 /* SentMessageTableViewCell.swift in Sources */,
+				8A35E7171CC5ADEC008DADE6 /* GeneralUtil.swift in Sources */,
 				8A35E6BD1CC2F71A008DADE6 /* AppDelegate.swift in Sources */,
+				8A35E7131CC5A846008DADE6 /* AudioUtil.swift in Sources */,
 				8A35E6F71CC4D5F5008DADE6 /* SocketService.swift in Sources */,
 				8A35E7001CC4FBBF008DADE6 /* StringExtensions.swift in Sources */,
 				8A35E6FB1CC4D685008DADE6 /* ChatMessage.swift in Sources */,

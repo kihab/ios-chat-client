@@ -8,13 +8,11 @@
 
 import Foundation
 import UIKit
-import AVFoundation
 import SocketRocket
 
-class ChatViewController : UIViewController, SRWebSocketDelegate, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
+class ChatViewController : UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, SRWebSocketDelegate {
 
     @IBOutlet weak var typeMessageBottomConstraint: NSLayoutConstraint!
-    //
     @IBOutlet weak var typeMessageView: UIView!
     @IBOutlet weak var sendMessageSpinner: UIActivityIndicatorView!
     @IBOutlet weak var chatTableView: UITableView!
@@ -26,44 +24,44 @@ class ChatViewController : UIViewController, SRWebSocketDelegate, UITableViewDel
         }
     }
 
-    //
+    //Holds the DataSource of the tableViewController
     var chatMessages:[ChatMessage]!
+    
+    //UserName
     var userName:String!
+    
+    //Socket
     var socket:SRWebSocket!
     
-    //
+    //Adjusting
     var numberOfLinesSoFar: CGFloat = 1
-    
-    //Audio
-    var receivedMessageAudio = AVAudioPlayer()
-    var sentMessageAudio = AVAudioPlayer()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ChatViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil);
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ChatViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil);
-        
-        //Looks for single or multiple taps.
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ChatViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
+        //Observers on the keyboard to adjust screen layout on show/hide
+        addKeyboardObservers()
 
-        //
-        chatMessages = [ChatMessage]()
-        
-        //...
-        startChat()
-
-        //..
+        //Setup some ViewController UI
         setupUI()
-        
-        //..
-        prepareAudio()
+
+        //Init TableView Datasource
+        chatMessages = [ChatMessage]()
+
+        //Preparing Send/Recieve Messages Audio
+        AudioUtil.prepareAudio()
+
+        //Start Socket Connection
+        startChat()
 
     }
     
+    //Observers on the keyboard to adjust screen layout on show/hide
+    func addKeyboardObservers() {
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ChatViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ChatViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil);
+    }
     
     //Calls this function when the tap is recognized.
     func dismissKeyboard() {
@@ -71,6 +69,7 @@ class ChatViewController : UIViewController, SRWebSocketDelegate, UITableViewDel
         view.endEditing(true)
     }
     
+    //Adjust Screen layout when Keyboard appears
     func keyboardWillShow(notification: NSNotification) {
         var info = notification.userInfo!
         let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
@@ -80,30 +79,29 @@ class ChatViewController : UIViewController, SRWebSocketDelegate, UITableViewDel
         })
     }
     
+    //Adjust Screen layout when Keyboard disappear
     func keyboardWillHide(notification: NSNotification) {
         UIView.animateWithDuration(0.1, animations: { () -> Void in
             self.typeMessageBottomConstraint.constant = 0
         })
     }
     
+    //Some UI preparations
     private func setupUI() {
+        
         sendMessageButton.enabled = false
         sendMessageSpinner.hidden = true
         writeMessageTextView.text = Constants.typeMessagePlaceHolder
         writeMessageTextView.textColor = UIColor.lightGrayColor()
-        addBorder(writeMessageTextView, borderWidth: 0.2, borderColor: UIColor.grayColor(), cornerRaduis: 4)        
+        writeMessageTextView.addBorder(0.2, borderColor: UIColor.grayColor(), cornerRaduis: 4)
+        
+        //Dismiss Keyboard when user taps any where is the screen
+        //Looks for single or multiple taps.
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ChatViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
     }
     
-    func addBorder(view: UIView, borderWidth: CGFloat, borderColor: UIColor, cornerRaduis: CGFloat) {
-        view.layer.cornerRadius = cornerRaduis
-        view.layer.borderColor = borderColor.CGColor
-        view.layer.borderWidth = borderWidth
-    }
-    
-    func setConstraintValue(constraint: NSLayoutConstraint, constantValue: CGFloat) {
-        constraint.constant = constantValue
-    }
-    
+    //Start Socket Connection
     private func startChat() {
         
         socket = SocketService.getChatSocket(self.userName)
@@ -111,6 +109,7 @@ class ChatViewController : UIViewController, SRWebSocketDelegate, UITableViewDel
         socket.open()
     }
     
+    //Restart Socket
     private func restartChat() {
 
         socket.delegate = nil
@@ -120,6 +119,7 @@ class ChatViewController : UIViewController, SRWebSocketDelegate, UITableViewDel
         
     }
     
+    //Send message Button
     @IBAction func sendMessage(sender: AnyObject) {
         
         //If the user didn't type a message show an alert and dont send empty message
@@ -143,20 +143,20 @@ class ChatViewController : UIViewController, SRWebSocketDelegate, UITableViewDel
         socket.send(msg)
         
         //Play sent message Sound
-        self.sentMessageAudio.play()
+        AudioUtil.sentMessageAudio.play()
 
         //Scroll to bottom so that the user always see the latest messages
         self.scrollToBottom()
     }
 
-    //
+    //Alert the user that he has beed disconnected when leaving the chat screen
     override func willMoveToParentViewController(parent: UIViewController?) {
-        
         if (parent == nil) {
             AlertUtil.showErrorAlert(self, msg: "Disconneted From Server");
         }
     }
     
+    //Closing Socket when leaving the chat Screen
     override func viewWillDisappear(animated: Bool) {
 
         if (socket != nil) {
@@ -167,9 +167,10 @@ class ChatViewController : UIViewController, SRWebSocketDelegate, UITableViewDel
 
     }
     
+    //To show latest messages
     func scrollToBottom() {
         // Handle Scrolling
-        self.delay(0.001) { () -> Void in
+        GeneralUtil.delay(0.001) { () -> Void in
             let numberOfSections = self.chatTableView.numberOfSections
             if numberOfSections > 0 {
                 let numberOfRows = self.chatTableView.numberOfRowsInSection(numberOfSections-1)
@@ -180,19 +181,10 @@ class ChatViewController : UIViewController, SRWebSocketDelegate, UITableViewDel
             }
         }
     }
-    
-    func delay(delay:Double, closure:()->()) {
-        dispatch_after(
-            dispatch_time(
-                DISPATCH_TIME_NOW,
-                Int64(delay * Double(NSEC_PER_SEC))
-            ),
-            dispatch_get_main_queue(), closure)
-    }
-    
+        
     //========================= TextView Delegates =========================
     
-    //...
+    //TetxView placeHolder
     func textViewDidBeginEditing(textView: UITextView) {
         if textView.textColor == UIColor.lightGrayColor() {
             textView.text = nil
@@ -207,15 +199,8 @@ class ChatViewController : UIViewController, SRWebSocketDelegate, UITableViewDel
         }
     }
     
+    //Adjusting TextView Height
     func textViewDidChange(textView: UITextView) {
-//        var emptyMessage = (textView.text == "")
-//        
-//        if !emptyMessage {
-//            self.toggleSendButton(true, imageName: "send_ico_pressed")
-//        } else {
-//            resetSendingMessageState()
-//        }
-        
         let maxNumberOfLines: CGFloat = 4
         let numLines = (textView.contentSize.height/textView.font!.lineHeight) - 1
         if (numLines <= maxNumberOfLines) {
@@ -229,6 +214,7 @@ class ChatViewController : UIViewController, SRWebSocketDelegate, UITableViewDel
     //========================= TableView Delegates =========================
     
     
+    //Showing cells based on message Type
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let message: ChatMessage = self.chatMessages[indexPath.row]
@@ -248,23 +234,12 @@ class ChatViewController : UIViewController, SRWebSocketDelegate, UITableViewDel
             return cell
 
         }
-        
-        
     }
     
-    func heightForView(text:String, width:CGFloat) -> CGFloat{
-        let label:UILabel = UILabel(frame: CGRectMake(0, 0, width, CGFloat.max))
-        label.numberOfLines = 0
-        label.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        label.font = UIFont(name: "Thonburi", size: 15.0)
-        label.text = text
-        label.sizeToFit()
-        return label.frame.height
-    }
-    
+    //Adjust table cell height based on message
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let message: ChatMessage = self.chatMessages[indexPath.row]
-        var height: CGFloat = Constants.initialMessageCellHeight + heightForView(message.message, width: chatTableView.frame.width - Constants.messageSidesSpacing)
+        var height: CGFloat = Constants.initialMessageCellHeight + GeneralUtil.heightForView(message.message, width: chatTableView.frame.width - Constants.messageSidesSpacing)
         
         if message.type == MessageType.recievedMessage {
             height += Constants.messageSenderNameHeight
@@ -273,32 +248,34 @@ class ChatViewController : UIViewController, SRWebSocketDelegate, UITableViewDel
         return height
     }
     
+    //Header above
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
         return CGFloat(0.1)
     }
     
+    //Rows
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return self.chatMessages.count
     }
     
+    //Sections
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
-    
-    
-    
-    
     //========================= Socket Delegates =========================
     
+    //On Socket Open
     func webSocketDidOpen(webSocket: SRWebSocket!) {
         print("SRWebSocket: webSocketDidOpen")
         
         self.sendMessageButton.enabled = true
     }
-
+    
+    
+    //On message reveived
     //Message will either be an NSString if the server is using text or NSData if the server is using binary
     func webSocket(webSocket: SRWebSocket!, didReceiveMessage message: AnyObject!) {
         
@@ -312,7 +289,7 @@ class ChatViewController : UIViewController, SRWebSocketDelegate, UITableViewDel
             self.chatMessages.append(chatMessage)
             self.chatTableView.reloadData()
             self.scrollToBottom()
-            self.receivedMessageAudio.play()
+            AudioUtil.receivedMessageAudio.play()
             
         }else{
             
@@ -320,25 +297,14 @@ class ChatViewController : UIViewController, SRWebSocketDelegate, UITableViewDel
         }
     }
     
+    //On Fail
     func webSocket(webSocket: SRWebSocket!, didFailWithError error: NSError!) {
-        
         print("SRWebSocket: didFailWithError:\(error)")
         
+        //Disable send button
         self.sendMessageButton.enabled = false
-//        restartChat()
-        //        show a message to recconect to server Manually
 
-    }
-    
-    func webSocket(webSocket: SRWebSocket!, didCloseWithCode code: Int, reason: String!, wasClean: Bool) {
-        
-        self.sendMessageButton.enabled = false
-        
-        print("SRWebSocket: didCloseWithCode: \(code)")
-        print("SRWebSocket: didCloseWithReason:\(reason)")
-        print("SRWebSocket: didCloseWasClear:\(wasClean)")
-
-//        show a message to recconect to server Manually
+        //Alert user to reconnect
         AlertUtil.showOkCancelAlert(self, title: "Oops!", message: "Server Disconnected :( ", okTitle: "Reconnect", okHandler: { (action) in
             self.restartChat()
             }, cancelHandler: nil)
@@ -346,36 +312,24 @@ class ChatViewController : UIViewController, SRWebSocketDelegate, UITableViewDel
 
     }
     
-    
-    
-    //========================= Audio =========================
-    
-    private func prepareAudio() {
-        prepareAudioForPlay(&sentMessageAudio, audioName: "sentMessageAudio")
-        prepareAudioForPlay(&receivedMessageAudio, audioName: "receivedMessageAudio")
+    //On Close
+    func webSocket(webSocket: SRWebSocket!, didCloseWithCode code: Int, reason: String!, wasClean: Bool) {
+        print("SRWebSocket: didCloseWithCode: \(code)")
+        print("SRWebSocket: didCloseWithReason:\(reason)")
+        print("SRWebSocket: didCloseWasClear:\(wasClean)")
+
+        //Disable send button
+        self.sendMessageButton.enabled = false
+        
+        //Alert user to reconnect
+        AlertUtil.showOkCancelAlert(self, title: "Oops!", message: "Server Disconnected :( ", okTitle: "Reconnect", okHandler: { (action) in
+            self.restartChat()
+            }, cancelHandler: nil)
+        
+
     }
     
-    
-    func prepareAudioForPlay(inout audio: AVAudioPlayer, audioName: String) {
-        
-        let alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(audioName, ofType: "mp3")!)
-        
-        do {
-            // Removed deprecated use of AVAudioSessionDelegate protocol
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-            
-            try AVAudioSession.sharedInstance().setActive(true)
-            
-            
-            let _:NSError?
-            
-            audio = try AVAudioPlayer(contentsOfURL: alertSound)
-            audio.prepareToPlay()
-        } catch _ {
-        }
-    }
-    
-    
+    //Removing the Keyboard Observers
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self);
     }

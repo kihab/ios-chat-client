@@ -31,12 +31,13 @@ class WelcomeViewController: UIViewController {
 
     }
     
-    //Adjust Screen layout when Keyboard appear
+    //Adjust Screen layout when Keyboard appears
     func keyboardWillShow(notification: NSNotification) {
         UIView.animateWithDuration(0.1, animations: { () -> Void in
             self.WelcomLabelTopConstraint.constant = self.WelcomLabelTopConstraint.constant - 70
         })
     }
+    
     //Adjust Screen layout when Keyboard disappear
     func keyboardWillHide(notification: NSNotification) {
         UIView.animateWithDuration(0.1, animations: { () -> Void in
