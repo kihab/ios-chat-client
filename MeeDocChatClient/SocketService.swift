@@ -12,8 +12,9 @@ import SocketRocket
 class SocketService {
 
     static func getChatSocket(username:String) -> SRWebSocket{
-        
-        let urlRequest = NSURLRequest(URL: NSURL(string: "\(Constants.webSocketURL)?\(Constants.userNameParam)=\(username)")!)
+
+        let encodedUsername = username.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+        let urlRequest = NSURLRequest(URL: NSURL(string: "\(Constants.webSocketURL)?\(Constants.userNameParam)=\(encodedUsername)")!)
         let socket = SRWebSocket(URLRequest: urlRequest)
         
         return socket
